@@ -54,13 +54,13 @@ const App = () => {
   return (
     <div className="container" id="main">
       {!!currentActivity && <CallDetail />}
+      {(!!isLoading || !!isFetching || isProcessing) && (
+        <Loader
+          label={isProcessing ? "Processing calls" : "Loading calls..."}
+        />
+      )}
       <Header />
       <MainContainer>
-        {(!!isLoading || !!isFetching || isProcessing) && (
-          <Loader
-            label={isProcessing ? "Processing calls" : "Loading calls..."}
-          />
-        )}
         {!isLoading && !isFetching && !!error && <ErrorState />}
         {!isLoading && !!data && (
           <React.Fragment>
